@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10243a">
+<title>نبراس العلوم | المعلمة بتول عصام</title>
+<style>
+:root {
+  --navy: #10243a;
+  --green: #168477;
+  --gold: #e9b84b;
+  --light: #f4f8f7;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: var(--light);
+  color: #263849;
+  line-height: 1.9;
+}
+.container {
+  width: 92%;
+  max-width: 1100px;
+  margin: auto;
+}
+header {
+  background: var(--navy);
+  color: white;
+  padding: 18px 0;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-icon { font-size: 42px; }
+.logo h1 { font-size: 24px; margin: 0; }
+.logo small { color: var(--gold); }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+nav a:hover { color: var(--gold); }
+.hero {
+  padding: 65px 0;
+  background: linear-gradient(135deg, #e5f4ef, #ffffff);
+  text-align: center;
+}
+.hero h2 {
+  color: var(--navy);
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.5;
+  margin: 10px 0;
+}
+.hero h2 span { color: var(--green); }
+.hero p {
+  max-width: 700px;
+  margin: 15px auto;
+  color: #536576;
+}
+.button {
+  display: inline-block;
+  padding: 11px 23px;
+  margin: 8px 4px;
+  border-radius: 10px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.button.secondary {
+  background: var(--gold);
+  color: var(--navy);
+}
+section { padding: 55px 0; }
+.section-title {
+  text-align: center;
+  color: var(--navy);
+  font-size: 29px;
+  margin: 0 0 8px;
+}
+.section-desc {
+  text-align: center;
+  color: #687887;
+  margin: 0 auto 30px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.card {
+  background: var(--white);
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid #e1e9e6;
+  box-shadow: 0 7px 20px #10243a0c;
+  transition: transform .2s;
+}
+.card:hover { transform: translateY(-4px); }
+.card .icon { font-size: 38px; }
+.card h3 { color: var(--navy); margin: 8px 0; }
+.card p { color: #667788; font-size: 14px; }
+.card a {
+  color: var(--green);
+  font-weight: bold;
+  text-decoration: none;
+}
+.soft { background: #eaf3f0; }
+.callout {
+  background: var(--navy);
+  color: white;
+  padding: 35px;
+  border-radius: 22px;
+  text-align: center;
+}
+.callout h2 { margin-top: 0; }
+.callout p { color: #d7e3eb; }
+footer {
+  background: #0b1c2d;
+  color: white;
+  text-align: center;
+  padding: 28px 10px;
+}
+footer p { margin: 5px; }
+.gold { color: var(--gold); }
+@media (max-width: 760px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav { justify-content: center; gap: 10px 14px; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding: 45px 0; }
+}
+@media (max-width: 480px) {
+  .cards { grid-template-columns: 1fr; }
+  .logo h1 { font-size: 21px; }
+  nav a { font-size: 13px; }
+  .callout { padding: 25px 18px; }
+}
+</style>
+</head>
+<body>
+
+<header id="home">
+  <div class="container header-content">
+    <div class="logo">
+      <span class="logo-icon">💡</span>
+      <div>
+        <h1>نبراس العلوم</h1>
+        <small>المعلمة بتول عصام</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#sections">الأقسام التعليمية</a>
+      <a href="#library">المكتبة العلمية</a>
+      <a href="#activities">الأنشطة</a>
+      <a href="#ask">اسأل نبراس</a>
+      <a href="#about">عن الموقع</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <p>✦ بوابتك إلى عالم العلوم والحياة ✦</p>
+      <h2>اكتشف، جرّب، وتعلّم مع<br><span>نبراس العلوم</span></h2>
+      <p>
+        رحلتك العلمية تبدأ من هنا! تعلّم العلوم بطريقة ممتعة،
+        واستكشف الدروس والملخصات وأوراق العمل والأنشطة العلمية
+        وفق المنهاج الفلسطيني.
+      </p>
+      <a class="button" href="#sections">استكشف الأقسام ←</a>
+      <a class="button secondary" href="#library">المكتبة العلمية</a>
+    </div>
+  </section>
+
+  <section id="sections">
+    <div class="container">
+      <h2 class="section-title">أقسام نبراس العلوم</h2>
+      <p class="section-desc">كل ما تحتاج إليه في رحلتك التعليمية في مكان واحد.</p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">📘</div>
+          <h3>الدروس والملخصات</h3>
+          <p>ملخصات منظمة تساعدك على فهم المفاهيم العلمية ومراجعتها.</p>
+          <a href="#library">اكتشف المزيد ←</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">📝</div>
+          <h3>أوراق العمل</h3>
+          <p>تدريبات وأنشطة متنوعة لترسيخ المعلومات وتنمية مهاراتك.</p>
+          <a href="#library">اكتشف المزيد ←</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">✅</div>
+          <h3>الامتحانات</h3>
+          <p>أسئلة للمراجعة والتدرب والاستعداد للاختبارات المدرسية.</p>
+          <a href="#library">اكتشف المزيد ←</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">💬</div>
+          <h3>اسأل نبراس</h3>
+          <p>مساحة مخصصة للمساعد التعليمي للإجابة عن أسئلتك العلمية.</p>
+          <a href="#ask">تعرّف على المساعد ←</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧩</div>
+          <h3>الألعاب والمسابقات</h3>
+          <p>تحديات وأسئلة تجعل تعلم العلوم أكثر تشويقًا ومتعة.</p>
+          <a href="#activities">اكتشف الأنشطة ←</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔬</div>
+          <h3>الأنشطة المخبرية</h3>
+          <p>استكشف الظواهر العلمية من خلال الملاحظة والتجربة الآمنة.</p>
+          <a href="#activities">اكتشف المزيد ←</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft" id="library">
+    <div class="container">
+      <h2 class="section-title">المكتبة العلمية</h2>
+      <p class="section-desc">ستجد هنا الموارد التعليمية التي ستُضاف تباعًا.</p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">📚</div>
+          <h3>ملخصات الدروس</h3>
+          <p>مساحة لإضافة ملخصات العلوم والحياة بحسب الوحدات الدراسية.</p>
+        </article>
+        <article class="card">
+          <div class="icon">✏️</div>
+          <h3>أوراق قابلة للطباعة</h3>
+          <p>مساحة لإضافة أوراق العمل والأنشطة الصفية.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🎯</div>
+          <h3>اختبر معلوماتك</h3>
+          <p>مساحة لإضافة أسئلة وتقييمات تساعدك على مراجعة ما تعلمته.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <div class="container">
+      <h2 class="section-title">كن عالمًا صغيرًا</h2>
+      <p class="section-desc">تعلّم كيف تفكر مثل العلماء.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">👀</div>
+          <h3>لاحظ</h3>
+          <p>راقب الظواهر من حولك وسجّل ملاحظاتك بدقة.</p>
+        </article>
+        <article class="card">
+          <div class="icon">❓</div>
+          <h3>اسأل</h3>
+          <p>اطرح سؤالًا علميًا وحاول توقّع الإجابة.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🔎</div>
+          <h3>استنتج</h3>
+          <p>قارن ملاحظاتك واستخدم الأدلة للوصول إلى استنتاج.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="ask">
+    <div class="container">
+      <div class="callout">
+        <h2>هل لديك سؤال علمي؟</h2>
+        <p>سيُضاف هنا رابط مساعد نبراس العلوم التعليمي عند تجهيز رابط المشاركة.</p>
+        <span class="gold">العلم يبدأ بسؤال!</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">عن نبراس العلوم</h2>
+      <p class="section-desc">
+        مبادرة تعليمية بإشراف المعلمة بتول عصام، تهدف إلى تبسيط العلوم
+        والحياة ودعم الطلبة في رحلتهم التعليمية وفق المنهاج الفلسطيني.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>💡 نبراس العلوم</strong></p>
+  <p class="gold">المعلمة بتول عصام</p>
+  <p>نتعلّم اليوم لنكتشف عالم الغد.</p>
+  <p>© <span id="year"></span> جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
