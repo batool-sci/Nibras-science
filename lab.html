@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مختبر نبراس للذرات والمادة</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--n:#05325b;--g:#ffd43a;--l:#cbeafd;--t:#09a5ae;--ok:#1d7a4d;--no:#a33b2b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#ddf1f8,#f5fdff);color:var(--n);font:18px/1.7 Cairo,Tahoma,sans-serif}
+header{background:linear-gradient(180deg,#05325b,#043158);color:#fff;padding:12px 16px;border-bottom:5px solid var(--g);display:flex;align-items:center;gap:12px}header h1{margin:0;font-size:1.5rem}header img{width:56px;height:56px;flex-shrink:0}
+.meta{display:flex;flex-wrap:wrap;gap:2px 16px;font-size:.88rem;color:var(--l)}
+.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--l);padding:10px 16px;font-weight:700}
+.prog{flex:1;min-width:130px;height:14px;background:#fff;border-radius:9px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:var(--g);transition:width .4s}
+#bdg span{background:#fff;border:2px solid var(--g);border-radius:99px;padding:1px 10px;font-size:.85rem;margin-inline-end:6px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 16px}nav button,.btn{font:inherit;font-weight:700;border:2px solid var(--n);background:#fff;color:var(--n);border-radius:14px;padding:9px 16px;cursor:pointer;white-space:nowrap}
+nav button.on,.btn.pri{background:var(--n);color:#fff}.btn.gold{background:var(--g);border-color:var(--g);color:var(--n)}
+main{max-width:860px;margin:0 auto;padding:6px 16px 40px}section{background:#fff;border:1px solid #cfdbe8;border-radius:20px;padding:18px;box-shadow:0 6px 18px #1f386410}
+h2{margin:0 0 6px}.row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.hint{color:#4d6283;font-size:.9rem}
+.mats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mats button{padding:16px 6px;font-size:1.1rem}.mats button.seen{border-color:var(--ok);background:#e8f5ee}
+.zoom{width:100%;max-width:420px;display:block;margin:12px auto;background:var(--l);border-radius:16px;animation:zin .7s ease-out}
+@keyframes zin{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.zoom{animation:none}}
+.atom{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;border:2px solid var(--n);font-weight:800;touch-action:none;user-select:none;cursor:grab}
+.ghost{position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:99;opacity:.9}
+#ws,.zone{min-height:90px;border:3px dashed var(--g);border-radius:16px;background:#fffdf3;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fb{margin-top:10px;padding:10px 14px;border-radius:12px;font-weight:700;min-height:1px}.fb.ok{background:#e1f4ea;color:var(--ok)}.fb.no{background:#fbe8e3;color:var(--no)}.fb:empty{display:none}
+.pal{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.pal span.l{display:flex;align-items:center;gap:6px}
+.pool{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}.card{background:#fff;border:2px solid var(--n);border-radius:14px;padding:8px 12px;cursor:grab;touch-action:none;user-select:none;text-align:center;min-width:120px}
+.card.sel{outline:4px solid var(--g)}.card.done{opacity:.85;cursor:default;border-color:var(--ok)}.card .atom{width:24px;height:24px;font-size:.6rem;cursor:inherit}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:10px}.zone b{width:100%}
+table{width:100%;border-collapse:collapse;margin-top:10px}td,th{border:1px solid #cfdbe8;padding:6px 8px}th{background:var(--l)}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:12px}#nm4 .card{margin-bottom:8px}.sym{display:grid;place-items:center;min-height:62px;margin-bottom:8px;border:3px dashed var(--g);border-radius:14px;font:800 1.4rem Cairo;direction:ltr;cursor:pointer;text-align:center}.sym.ok{border:3px solid var(--ok);background:#e8f5ee;font-size:1rem;direction:rtl}.col{display:grid;gap:8px;margin:8px 0}.bar5{display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;padding:4px 0;font:inherit;color:var(--n);cursor:pointer}.bar5 .bn{width:112px;text-align:right;font-size:.9rem}.bt{flex:1;height:18px;background:var(--l);border-radius:9px;overflow:hidden}.bt i{display:block;height:100%;background:var(--g)}.bar5 b{width:64px;text-align:left;font-size:.9rem}.btn.ok{background:#e1f4ea;border-color:var(--ok)}.btn.no{background:#fbe8e3;border-color:var(--no)}
+.stk{display:flex;direction:ltr;height:34px;border-radius:8px;overflow:hidden;margin:8px 0}.stk i{display:block;height:100%}select{font:inherit;padding:6px;border-radius:10px;border:2px solid var(--n);margin:4px 0}.btn.pk{background:#fff3cd;border-color:var(--g)}
+.big{font-size:1.9rem;font-weight:800;text-align:center}
+@media(max-width:560px){.zones{grid-template-columns:1fr}}
+</style></head><body>
+<header><img src="logo.png" alt="شعار نبراس العلوم"><h1>مختبر نبراس للذرات والمادة</h1>
+<div class="meta"><span id="stName"></span><span>المادة: العلوم</span><span>الدرس: تركيب المادة</span><span>الصف: السادس</span><span>المعلمة: بتول عصام</span></div></header>
+<div class="bar"><span>⭐ النقاط: <b id="pts">٠</b></span><div class="prog" role="progressbar" aria-label="التقدم"><i></i></div><span id="pct">٠٪</span><span id="bdg"></span></div>
+<nav id="nav"><button data-s="home" class="on">🏠 الرئيسية</button><button data-s="s1">١ اكتشف الذرات</button><button data-s="s2">٢ ابنِ الجزيئات</button><button data-s="s3">٣ عنصر أم مركّب؟</button><button data-s="s4">٤ فك الشيفرة</button><button data-s="s5">٥ القشرة الأرضية</button><button data-s="s6">٦ الغلاف الجوي</button><button data-s="s7">٧ تحدي العالم الصغير</button><button onclick="location.href='index.html'">↩ الموقع</button></nav>
+<main>
+<section id="home"><h2>مرحبًا بك في مختبر نبراس!</h2><p>اكتشف عالم المادة، وابنِ الجزيئات، وكن عالمًا صغيرًا!</p>
+<p class="hint">الصف السادس الأساسي • الدرس: تركيب المادة • الوحدة الثانية</p>
+<div class="row"><button class="btn gold" onclick="show('s1')">ابدأ المغامرة العلمية</button><button class="btn" onclick="$('#nav').scrollIntoView()">استكشف المحطات</button></div></section>
+
+<section id="s1" hidden><h2>المحطة ١: اكتشف عالم الذرات</h2><p>اضغط على كل مادة لتكبّرها وتشاهد مما تتكوّن.</p>
+<div class="mats"><button class="btn" data-m="cu">النحاس</button><button class="btn" data-m="fe">الحديد</button><button class="btn" data-m="h2o">الماء</button></div>
+<div id="zb"></div><p class="hint">الرسوم نماذج توضيحية مبسّطة، وليست صورًا حقيقية للذرات.</p><div id="q1"></div>
+<div class="row"><button class="btn" id="r1">إعادة الضبط</button></div></section>
+
+<section id="s2" hidden><h2>المحطة ٢: ابنِ الجزيئات بنفسك</h2>
+<div class="row" id="t2"></div><p id="goal2"></p>
+<div class="pal" id="pal"><span class="l"><span class="atom" data-s="O" style="background:#D64545;color:#fff">O</span> أكسجين</span><span class="l"><span class="atom" data-s="C" style="background:#333;color:#fff">C</span> كربون</span></div>
+<p class="hint">اسحب الذرات إلى المساحة، أو استخدم الأزرار إن تعذّر السحب.</p>
+<div id="ws" aria-label="مساحة التركيب"></div>
+<div class="row"><button class="btn" data-a="O">+ ذرة أكسجين</button><button class="btn" data-a="C">+ ذرة كربون</button><button class="btn" id="del">حذف آخر ذرة</button><button class="btn pri" id="chk">تحقّق</button><button class="btn" id="clr">إعادة الضبط</button></div>
+<div class="fb" id="fb2" aria-live="polite"></div><div id="mol"></div></section>
+
+<section id="s3" hidden><h2>المحطة ٣: عنصر أم مركّب؟</h2><p>انظر إلى الذرات على كل بطاقة، ثم اسحبها إلى المنطقة المناسبة (أو اضغط البطاقة ثم المنطقة).</p>
+<div class="pool" id="pool"></div>
+<div class="zones"><div class="zone" data-z="el"><b>العناصر</b></div><div class="zone" data-z="co"><b>المركّبات</b></div></div>
+<div class="fb" id="fb3" aria-live="polite"></div><div id="sum3"></div>
+<div class="row"><button class="btn" id="r3">إعادة الضبط</button></div></section>
+<section id="s4" hidden><h2>المحطة ٤: فك شيفرة العناصر</h2><p>صِل اسم كل عنصر برمزه: اسحب الاسم إلى رمزه، أو اضغط الاسم ثم الرمز.</p><p class="hint" id="rd4"></p>
+<div class="pairs"><div id="nm4"></div><div id="sy4"></div></div><div class="fb" id="fb4" aria-live="polite"></div><div id="ch4"></div><div class="row"><button class="btn" id="rs4">إعادة الضبط</button></div></section>
+<section id="s5" hidden><h2>المحطة ٥: اكتشف أسرار القشرة الأرضية</h2>
+<svg viewBox="0 0 120 120" width="96" style="float:left;margin:0 0 6px 10px" role="img" aria-label="الكرة الأرضية"><circle cx="60" cy="60" r="56" fill="#2f78c4"/><ellipse cx="45" cy="48" rx="20" ry="14" fill="#5aa65a"/><ellipse cx="78" cy="78" rx="16" ry="12" fill="#5aa65a"/><ellipse cx="82" cy="40" rx="9" ry="7" fill="#5aa65a"/></svg>
+<p>اضغط على أي عمود لتعرف اسم العنصر ونسبته في القشرة الأرضية.</p><div id="bars" style="clear:both"></div><div class="fb ok" id="inf5">اختر عنصرًا من الأعمدة.</div>
+<h3>رتّب العناصر حسب وفرتها</h3><p>اضغط العناصر بالترتيب، من الأكثر وفرة إلى الأقل.</p><div class="pool" id="rk"></div><p id="rkr"></p><div class="fb" id="fb5" aria-live="polite"></div>
+<h3>أسئلة</h3><div id="qs5"></div><div class="row"><button class="btn" id="rs5">إعادة الضبط</button></div></section>
+<section id="s6" hidden><h2>المحطة ٦: استكشف الغلاف الجوي</h2><p>الغلاف الجوي هو الغلاف الغازي المحيط بالأرض. اضغط على أي جزء من الرسم لتعرف الغاز ونسبته.</p>
+<svg id="pie" viewBox="0 0 220 220" style="width:100%;max-width:300px;display:block;margin:auto" role="img" aria-label="مكونات الغلاف الجوي"></svg>
+<div class="fb ok" id="inf6">اختر جزءًا من الرسم.</div><div class="row" id="lg6"></div>
+<h3>رتّب الغازات حسب نسبها</h3><p>اضغط على الغازات بالترتيب، من الأكبر نسبة إلى الأصغر.</p><div class="pool" id="rk6"></div><p id="rkr6"></p><div class="fb" id="fb6" aria-live="polite"></div>
+<h3>أسئلة قصيرة</h3><div id="qs6"></div><div class="row"><button class="btn" id="rs6">إعادة الضبط</button></div></section>
+<section id="s7" hidden><h2>المحطة ٧: تحدّي العالم الصغير</h2><p>اختبار ختامي من ثلاثة مستويات: مبتدئ، ثم مستكشف، ثم خبير. أجب عن كل سؤال، وفي النهاية يظهر تقرير إنجازك.</p><div id="t7"></div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+let S={pts:0,done:{}};try{Object.assign(S,JSON.parse(localStorage.getItem('nibras_lab')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nibras_lab',JSON.stringify(S))}catch(e){}},TOTAL=23;
+const COL={O:'#D64545',C:'#333',H:'#fff',Fe:'#8a8f98',Cu:'#c97b3a',S:'#e5c61f'};
+const atom=s=>`<span class="atom" style="background:${COL[s]};color:${s==='H'||s==='S'?'#05325b':'#fff'}">${s}</span>`;
+function paint(){const n=Object.keys(S.done).filter(k=>k[0]!=='p').length,p=Math.round(n/TOTAL*100),b=[];
+ $('#pts').textContent=AR(S.pts);$('.prog i').style.width=p+'%';$('#pct').textContent=AR(p)+'٪';
+ if(S.done.s1)b.push('🔭 مستكشف الذرة');if(S.done.o2&&S.done.co2)b.push('⚙️ مهندس الجزيئات');if(S.done.m4&&S.done.why)b.push('🔤 خبير العناصر');if(S.done.rank&&S.done.q0&&S.done.q1&&S.done.q2)b.push('🌍 عالم الأرض');
+ $('#bdg').innerHTML=b.map(x=>`<span>${x}</span>`).join('')}
+const NM=(()=>{try{return localStorage.getItem('nb_name')||''}catch(e){return ''}})();const H=()=>NM?NM+'، ':'';{const e=document.getElementById('stName');if(e){if(NM)e.textContent='الطالب: '+NM;else e.remove()}}
+function award(id,p){if(S.done[id])return false;S.done[id]=1;S.pts+=p;save();paint();return true}
+function show(id){$$('main>section').forEach(s=>s.hidden=s.id!==id);$$('#nav button[data-s]').forEach(b=>b.classList.toggle('on',b.dataset.s===id));scrollTo(0,0)}
+$$('#nav button[data-s]').forEach(b=>b.onclick=()=>show(b.dataset.s));
+function drag(el,drop){el.addEventListener('pointerdown',e=>{if(el.classList.contains('done'))return;e.preventDefault();const g=el.cloneNode(true);g.classList.add('ghost');document.body.appendChild(g);
+ const mv=v=>{g.style.left=v.clientX+'px';g.style.top=v.clientY+'px'};mv(e);
+ const up=v=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);g.remove();drop(document.elementFromPoint(v.clientX,v.clientY))};
+ addEventListener('pointermove',mv);addEventListener('pointerup',up)})}
+/* ---- المحطة ١ ---- */
+const MAT={cu:['النحاس','تتكوّن قطعة النحاس من ذرات نحاس كلها من نوع واحد.'],fe:['الحديد','تتكوّن قطعة الحديد من ذرات حديد كلها من نوع واحد.'],h2o:['الماء','يتكوّن الماء من جزيئات؛ في كل جزيء ذرتا هيدروجين وذرة أكسجين.']};
+let seen={};
+function zsvg(k){let s='<svg viewBox="0 0 300 190" class="zoom" role="img" aria-label="نموذج مكبّر">';
+ if(k==='h2o')[[55,45],[150,40],[245,50],[95,125],[195,130],[265,150]].forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="17" fill="#D64545"/><circle cx="${x-22}" cy="${y+16}" r="10" fill="#fff" stroke="#05325b"/><circle cx="${x+22}" cy="${y+16}" r="10" fill="#fff" stroke="#05325b"/>`);
+ else{const sy=k==='cu'?'Cu':'Fe';for(let r=0;r<4;r++)for(let c=0;c<6;c++)s+=`<circle cx="${37+c*45}" cy="${30+r*43}" r="18" fill="${COL[sy]}" stroke="#05325b"/><text x="${37+c*45}" y="${35+r*43}" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">${sy}</text>`}
+ return s+'</svg>'}
+function ask1(){if(Object.keys(seen).length<3){$('#q1').innerHTML='';return}
+ $('#q1').innerHTML=`<h3>سؤال: ما وحدة بناء المادة؟</h3><div class="row">${['الذرة','الخلية','النسيج'].map(o=>`<button class="btn" data-o="${o}">${o}</button>`).join('')}</div><div class="fb" id="fb1" aria-live="polite"></div>`;
+ $$('#q1 [data-o]').forEach(b=>b.onclick=()=>{const f=$('#fb1');if(b.dataset.o==='الذرة'){const n=award('s1',5);f.className='fb ok';f.textContent=H()+'أحسنت! كل ما شاهدته مبني من ذرات، فهي وحدة بناء المادة.'+(n?' (+٥ نقاط)':'')}else{f.className='fb no';f.textContent=H()+'فكّر في الأشكال المكبّرة التي شاهدتها: مم تتكوّن كل مادة منها؟'}})}
+$$('[data-m]').forEach(b=>b.onclick=()=>{const k=b.dataset.m;seen[k]=1;b.classList.add('seen');$('#zb').innerHTML=zsvg(k)+`<p><b>${MAT[k][0]}:</b> ${MAT[k][1]}</p>`;ask1()});
+$('#r1').onclick=()=>{seen={};$$('[data-m]').forEach(b=>b.classList.remove('seen'));$('#zb').innerHTML='';ask1()};
+/* ---- المحطة ٢ ---- */
+const TK=[{id:'o2',t:'جزيء الأكسجين',goal:'ركّب جزيء الأكسجين.',need:{O:2},f:'O₂',arr:['O','O'],msg:'أحسنت! يتكوّن جزيء الأكسجين من ذرتين من الأكسجين.',hint:'جزيء العنصر ينتج من اتحاد ذرات من العنصر نفسه. كم ذرة تحتاج لتكوّن جزيئًا؟'},
+{id:'co2',t:'ثاني أكسيد الكربون',goal:'ركّب جزيء ثاني أكسيد الكربون.',need:{C:1,O:2},f:'CO₂',arr:['O','C','O'],msg:'أحسنت! يتكوّن جزيء ثاني أكسيد الكربون من ذرة كربون وذرتين من الأكسجين.',hint:'اسم المركّب يدلّك على نوعي الذرات وعلى عدد ذرات الأكسجين. أعد قراءته.'}];
+let T=0,ws=[];
+function rws(){$('#ws').innerHTML=ws.map((s,i)=>`<span data-i="${i}" title="اضغط للحذف">${atom(s)}</span>`).join('')||'<span class="hint">المساحة فارغة</span>'}
+function task(i){T=i;ws=[];$('#goal2').textContent=TK[i].goal;$('#fb2').className='fb';$('#fb2').textContent='';$('#mol').innerHTML='';$$('#t2 button').forEach((b,j)=>b.classList.toggle('pri',j===i));rws()}
+$('#t2').innerHTML=TK.map((k,i)=>`<button class="btn">${k.t}</button>`).join('');$$('#t2 button').forEach((b,i)=>b.onclick=()=>task(i));
+$$('#pal .atom').forEach(a=>drag(a,t=>{if(t&&t.closest('#ws')){ws.push(a.dataset.s);rws()}}));
+$$('[data-a]').forEach(b=>b.onclick=()=>{ws.push(b.dataset.a);rws()});
+$('#ws').onclick=e=>{const s=e.target.closest('[data-i]');if(s){ws.splice(+s.dataset.i,1);rws()}};
+$('#del').onclick=()=>{ws.pop();rws()};$('#clr').onclick=()=>task(T);
+$('#chk').onclick=()=>{const k=TK[T],c={},f=$('#fb2');ws.forEach(s=>c[s]=(c[s]||0)+1);
+ const ok=Object.keys(k.need).every(s=>c[s]===k.need[s])&&Object.keys(c).every(s=>k.need[s]);
+ if(ok){const n=award(k.id,10);f.className='fb ok';f.textContent=H()+k.msg+(n?' (+١٠ نقاط)':' (حصلت على نقاط هذا النشاط من قبل)');
+  $('#mol').innerHTML=`<svg viewBox="0 0 200 70" style="width:200px;display:block;margin:10px auto">${k.arr.map((s,i)=>`<circle cx="${(200-(k.arr.length-1)*34)/2+i*34}" cy="35" r="24" fill="${COL[s]}" stroke="#05325b"/>`).join('')}</svg><div class="big">${k.f}</div>`}
+ else{f.className='fb no';f.textContent=H()+ws.length?k.hint:'ابدأ بسحب ذرة إلى مساحة التركيب.';$('#mol').innerHTML=''}};
+/* ---- المحطة ٣ ---- */
+const CD=[['fe','الحديد','el',['Fe'],'ذراته من نوع واحد (حديد).'],['cu','النحاس','el',['Cu'],'ذراته من نوع واحد (نحاس).'],['h2','الهيدروجين','el',['H','H'],'جزيئه من ذرتين من الهيدروجين، أي من نوع واحد.'],['o2c','الأكسجين','el',['O','O'],'جزيئه من ذرتين من الأكسجين، أي من نوع واحد.'],
+['h2o','الماء','co',['H','H','O'],'اتحدت فيه ذرات هيدروجين مع ذرة أكسجين.'],['co2c','ثاني أكسيد الكربون','co',['C','O','O'],'اتحدت فيه ذرة كربون مع ذرتي أكسجين.'],['fes','كبريتيد الحديد','co',['Fe','S'],'اتحد فيه الحديد مع الكبريت.'],['sug','السكّر','co',['C','H','O'],'اتحدت فيه ذرات كربون وهيدروجين وأكسجين.']];
+let sel=null,placed={};
+const ZN={el:'عنصر',co:'مركّب'};
+function place(c,z){const d=CD.find(x=>x[0]===c.dataset.id),f=$('#fb3');if(!z)return;
+ if(d[2]===z.dataset.z){c.classList.remove('sel');c.classList.add('done');c.onpointerdown=null;z.appendChild(c);placed[d[0]]=1;sel=null;const n=award('c_'+d[0],2);
+  f.className='fb ok';f.textContent=H()+`✔ ${d[1]} ${ZN[d[2]]}: ${d[4]}`+(n?' (+٢ نقطة)':'');
+  if(Object.keys(placed).length===CD.length)$('#sum3').innerHTML='<table><tr><th>المادة</th><th>التصنيف</th><th>السبب</th></tr>'+CD.map(x=>`<tr><td>${x[1]}</td><td>${ZN[x[2]]}</td><td>${x[4]}</td></tr>`).join('')+'</table>'}
+ else{c.classList.remove('sel');sel=null;f.className='fb no';f.textContent=H()+'حاول مرة أخرى. انظر إلى الذرات على البطاقة: هل هي من نوع واحد أم من أنواع مختلفة؟'}}
+function r3(){sel=null;placed={};$('#fb3').className='fb';$('#fb3').textContent='';$('#sum3').innerHTML='';$$('.zone .card').forEach(c=>c.remove());
+ $('#pool').innerHTML='';[...CD].sort(()=>Math.random()-.5).forEach(d=>{const c=document.createElement('div');c.className='card';c.dataset.id=d[0];c.innerHTML=`<b>${d[1]}</b><div>${d[3].map(atom).join('')}</div>`;
+  drag(c,t=>{if(t&&c.contains(t)){if(sel)sel.classList.remove('sel');sel=sel===c?null:c;if(sel)c.classList.add('sel')}else place(c,t&&t.closest('.zone'))});$('#pool').appendChild(c)})}
+$$('.zone').forEach(z=>z.onclick=()=>{if(sel)place(sel,z)});$('#r3').onclick=r3;
+/* ---- المحطة ٤ ---- */
+const sh=a=>[...a].sort(()=>Math.random()-.5);
+const EL=[['الهيدروجين','H','Hydor'],['الأكسجين','O','Oxys'],['الكربون','C','Carbo'],['الحديد','Fe','Ferrum'],['النحاس','Cu','Cuprum'],['الألومنيوم','Al','Alumen'],['الكبريت','S','Sulfur'],['النيتروجين','N','Nitron'],['الكلور','Cl','Chloros'],['الكالسيوم','Ca','Calcis'],['المغنيسيوم','Mg','Magnesia'],['الصوديوم','Na','Natrium'],['البوتاسيوم','K','Kalium'],['السيليكون','Si','Silex']];
+let R4=0,sel4=null,ok4=0;
+function r4(n){R4=n;sel4=null;ok4=0;const set=EL.slice(n*7,n*7+7),f=$('#fb4');$('#rd4').textContent='الجولة '+AR(n+1)+' من ٢';f.className='fb';f.textContent='';$('#nm4').innerHTML='';$('#sy4').innerHTML='';if(n===0)$('#ch4').innerHTML='';
+ sh(set).forEach(e=>{const c=document.createElement('div');c.className='card';c.dataset.s=e[1];c.innerHTML=`<b>${e[0]}</b><br><small dir="ltr">${e[2]}</small>`;
+  drag(c,t=>{if(t&&c.contains(t)){if(sel4)sel4.classList.remove('sel');sel4=sel4===c?null:c;if(sel4)c.classList.add('sel')}else go4(c,t&&t.closest('.sym'))});$('#nm4').appendChild(c)});
+ sh(set).forEach(e=>{const y=document.createElement('div');y.className='sym';y.dataset.s=e[1];y.textContent=e[1];y.onclick=()=>{if(sel4)go4(sel4,y)};$('#sy4').appendChild(y)})}
+function go4(c,y){if(!y||c.classList.contains('done'))return;const e=EL.find(x=>x[1]===c.dataset.s),f=$('#fb4');c.classList.remove('sel');sel4=null;
+ if(y.dataset.s===e[1]){c.classList.add('done');y.classList.add('ok');y.textContent=e[1]+' = '+e[0];ok4++;const n=award('p_'+e[1],2);f.className='fb ok';f.textContent=H()+'✔ رمز '+e[0]+' هو '+e[1]+(n?' (+٢ نقطة)':'');
+  if(ok4===7){if(R4===0){const b=document.createElement('button');b.className='btn gold';b.textContent='الجولة التالية';b.style.marginInlineStart='10px';b.onclick=()=>r4(1);f.appendChild(b)}else{award('m4',10);f.textContent=H()+'أحسنت! أنهيت مطابقة جميع الرموز.';ch4()}}}
+ else{f.className='fb no';f.textContent=H()+'ليس صحيحًا. رمز '+e[0]+' هو '+e[1]+'.'}}
+function ch4(){const o=[['لأن بعض الأسماء اللاتينية تبدأ بالحرف نفسه، فيُضاف حرف ثانٍ للتمييز بينها',1],['لأن العناصر الكبيرة فقط لها رمزان',0],['لأن الفلزات وحدها لها رمزان',0]];
+ $('#ch4').innerHTML='<h3>تحدٍّ: لماذا يُرمز لبعض العناصر بحرف واحد ولبعضها بحرفين؟</h3><div class="col"></div><p class="hint">يُكتب الحرف الأول كبيرًا والثاني صغيرًا، مثل Cl وCa.</p><div class="fb" id="fbc"></div>';
+ o.forEach(x=>{const b=document.createElement('button');b.className='btn';b.textContent=x[0];b.onclick=()=>{const f=$('#fbc');if(x[1]){b.classList.add('ok');const n=award('why',5);f.className='fb ok';f.textContent=H()+'أحسنت! تُشتق الرموز من الأسماء اللاتينية، وقد تتشابه الأحرف الأولى لعناصر مختلفة.'+(n?' (+٥ نقاط)':'')}else{b.classList.add('no');f.className='fb no';f.textContent=H()+'فكّر: ماذا يحدث عندما تبدأ أسماء عدة عناصر بالحرف نفسه؟'}};$('#ch4 .col').appendChild(b)})}
+$('#rs4').onclick=()=>r4(0);
+/* ---- المحطة ٥ ---- */
+const CR=[['الأكسجين','O',47.3],['السيليكون','Si',27.7],['الألومنيوم','Al',7.8],['الحديد','Fe',4.5],['الكالسيوم','Ca',3.5],['الصوديوم','Na',2.5],['البوتاسيوم','K',2.5],['المغنيسيوم','Mg',2.2],['عناصر أخرى','',1.6],['الهيدروجين','H',0.2],['الكلور','Cl',0.2]];
+const pc=p=>AR(p).replace('.','٫')+'٪';
+function r5(){let seq=[];$('#bars').innerHTML=CR.map((e,i)=>`<button class="bar5" data-i="${i}"><span class="bn">${e[0]}</span><span class="bt"><i style="width:${Math.max(2,e[2]/47.3*100)}%"></i></span><b>${pc(e[2])}</b></button>`).join('');
+ $$('.bar5').forEach(b=>b.onclick=()=>{const e=CR[b.dataset.i];$('#inf5').textContent=e[0]+(e[1]?' ('+e[1]+')':'')+': '+pc(e[2])+' من تركيب القشرة الأرضية'});
+ $('#inf5').textContent='اختر عنصرًا من الأعمدة.';const f=$('#fb5');f.className='fb';f.textContent='';$('#rkr').textContent='';$('#rk').innerHTML='';
+ sh(CR.slice(0,5)).forEach(e=>{const b=document.createElement('button');b.className='btn';b.textContent=e[0];b.onclick=()=>{if(e[0]===CR[seq.length][0]){seq.push(e[0]);b.disabled=true;b.classList.add('ok');$('#rkr').textContent=seq.map((x,i)=>AR(i+1)+'. '+x).join(' • ');f.className='fb';f.textContent='';
+  if(seq.length===5){const n=award('rank',10);f.className='fb ok';f.textContent=H()+'أحسنت! رتّبت العناصر من الأكثر وفرة إلى الأقل.'+(n?' (+١٠ نقاط)':'')}}else{f.className='fb no';f.textContent=H()+'ليس هذا هو التالي. قارن أطوال الأعمدة ثم حاول مرة أخرى.'}};$('#rk').appendChild(b)});
+ const Q=['ما العنصر الأكثر وفرة في القشرة الأرضية؟','ما العنصر الذي يأتي في المرتبة الثانية؟','ما العنصر الذي يأتي في المرتبة الثالثة؟'];$('#qs5').innerHTML='';
+ Q.forEach((q,i)=>{const d=document.createElement('div');d.innerHTML='<p><b>'+q+'</b></p><div class="col"></div><div class="fb"></div>';const ans=CR[i][0],opts=sh([ans,...sh(CR.slice(0,5).filter(x=>x[0]!==ans)).slice(0,3).map(x=>x[0])]);
+  opts.forEach(o=>{const b=document.createElement('button');b.className='btn';b.textContent=o;b.onclick=()=>{const fb=d.querySelector('.fb');if(o===ans){b.classList.add('ok');const n=award('q'+i,5);fb.className='fb ok';fb.textContent='صحيح: '+ans+' ('+pc(CR[i][2])+').'+(n?' (+٥ نقاط)':'')}else{b.classList.add('no');fb.className='fb no';fb.textContent='راجع الأعمدة ثم حاول مرة أخرى.'}};d.querySelector('.col').appendChild(b)});$('#qs5').appendChild(d)})}
+$('#rs5').onclick=r5;
+/* ---- المحطة ٦ ---- */
+const GS=[['النيتروجين','N',78,'#2f78c4'],['الأكسجين','O',21,'#4caf50'],['غازات أخرى','',1,'#f2994a']];
+function pie(sel){let a=-Math.PI/2,s='';GS.forEach((g,i)=>{const sw=g[2]/100*2*Math.PI,a1=a+sw,m=a+sw/2,d=sel===i?10:0,x0=110+80*Math.cos(a),y0=110+80*Math.sin(a),x1=110+80*Math.cos(a1),y1=110+80*Math.sin(a1);
+ s+=`<path d="M110,110L${x0},${y0}A80,80 0 ${sw>Math.PI?1:0} 1 ${x1},${y1}Z" fill="${g[3]}" stroke="#fff" stroke-width="3" transform="translate(${d*Math.cos(m)},${d*Math.sin(m)})" data-i="${i}" tabindex="0" role="button" aria-label="${g[0]} ${pc(g[2])}" style="cursor:pointer"/>`;
+ if(g[2]>5)s+=`<text x="${110+50*Math.cos(m)+d*Math.cos(m)}" y="${115+50*Math.sin(m)+d*Math.sin(m)}" text-anchor="middle" fill="#fff" font-weight="800" font-size="16" pointer-events="none">${pc(g[2])}</text>`;a=a1});
+ $('#pie').innerHTML=s;$$('#pie path').forEach(p=>{p.onclick=()=>pick6(+p.dataset.i);p.onkeydown=e=>{if(e.key==='Enter')pick6(+p.dataset.i)}})}
+function pick6(i){const g=GS[i];pie(i);$('#inf6').textContent=g[0]+(g[1]?' (رمز العنصر '+g[1]+')':' (من أمثلتها: الأرجون وبخار الماء وثاني أكسيد الكربون)')+': '+pc(g[2])}
+function mcb(root,q,opts,ans,key,pts){const d=document.createElement('div');d.innerHTML='<p><b>'+q+'</b></p><div class="col"></div><div class="fb"></div>';
+ opts.forEach(o=>{const b=document.createElement('button');b.className='btn';b.textContent=o;b.onclick=()=>{const f=d.querySelector('.fb');if(o===ans){b.classList.add('ok');const n=award(key,pts);f.className='fb ok';f.textContent=H()+'صحيح! '+ans+(n?' (+'+AR(pts)+' نقاط)':'')}else{b.classList.add('no');f.className='fb no';f.textContent=H()+'راجع الرسم ثم حاول مرة أخرى.'}};d.querySelector('.col').appendChild(b)});root.appendChild(d)}
+function r6(){let seq=[];pie(-1);$('#inf6').textContent='اختر جزءًا من الرسم.';
+ $('#lg6').innerHTML='';GS.forEach((g,i)=>{const b=document.createElement('button');b.className='btn';b.innerHTML=`<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${g[3]}"></span> ${g[0]} ${pc(g[2])}`;b.onclick=()=>pick6(i);$('#lg6').appendChild(b)});
+ const f=$('#fb6');f.className='fb';f.textContent='';$('#rkr6').textContent='';$('#rk6').innerHTML='';
+ sh(GS).forEach(g=>{const b=document.createElement('button');b.className='btn';b.textContent=g[0];b.onclick=()=>{if(g[0]===GS[seq.length][0]){seq.push(g[0]);b.disabled=true;b.classList.add('ok');$('#rkr6').textContent=seq.map((x,i)=>AR(i+1)+'. '+x).join(' • ');f.className='fb';f.textContent='';
+  if(seq.length===3){const n=award('rk6',10);f.className='fb ok';f.textContent=H()+'أحسنت! رتّبت الغازات من الأكبر نسبة إلى الأصغر.'+(n?' (+١٠ نقاط)':'')}}else{f.className='fb no';f.textContent=H()+'ليس هذا هو التالي. قارن حجم الأجزاء في الرسم ثم حاول مرة أخرى.'}};$('#rk6').appendChild(b)});
+ $('#qs6').innerHTML='';const q=$('#qs6');
+ mcb(q,'ما الغاز الذي يشكل معظم الغلاف الجوي؟',sh(['النيتروجين','الأكسجين','الأرجون','ثاني أكسيد الكربون']),'النيتروجين','a0',5);
+ mcb(q,'ما نسبة الأكسجين في الغلاف الجوي؟',sh(['٧٨٪','٢١٪','١٪','٤٧٫٣٪']),'٢١٪','a1',5);
+ mcb(q,'ما رمز عنصر الأكسجين؟',sh(['O','Ox','N','Ca']),'O','a2',5);
+ mcb(q,'ما رمز عنصر النيتروجين؟',sh(['N','O','Ni','Na']),'N','a3',5)}
+$('#rs6').onclick=r6;
+/* ---- المحطة ٧ ---- */
+const LV=['مبتدئ','مستكشف','خبير'],TF=['صح','خطأ'],CL=['عنصر','مركّب'];
+const btn=(t,f,c)=>{const b=document.createElement('button');b.className='btn '+(c||'');b.textContent=t;b.onclick=f;return b};
+const TQ=[
+{lv:0,t:'الذرة',q:'الذرة هي وحدة بناء المادة.',o:TF,a:'صح',w:'الذرة هي وحدة بناء المادة.'},
+{lv:0,t:'الذرة',q:'ما أصغر جزء من العنصر يحتفظ بصفاته؟',o:['الجزيء','الذرة','المركّب'],a:'الذرة',w:'الذرة أصغر جزء من العنصر يحتفظ بصفاته.'},
+{lv:0,t:'العنصر والمركّب',q:'صنّف: الحديد',o:CL,a:'عنصر',w:'ذرات الحديد كلها من نوع واحد.'},
+{lv:0,t:'الرموز',q:'ما رمز عنصر الأكسجين؟',o:['O','Ox','N','Ca'],a:'O',w:'رمز الأكسجين هو O.'},
+{lv:1,t:'الرموز',type:'match',q:'صِل كل عنصر برمزه:',p:[['الحديد','Fe'],['النحاس','Cu'],['الكربون','C']],w:'الحديد Fe، والنحاس Cu، والكربون C.'},
+{lv:1,t:'الغلاف الجوي',q:'من الرسم: ما نسبة الأكسجين في الغلاف الجوي؟',x:'<div class="stk"><i style="width:78%;background:#2f78c4"></i><i style="width:21%;background:#4caf50"></i><i style="width:1%;background:#f2994a"></i></div><p class="hint">🔵 نيتروجين ٧٨٪ • 🟢 أكسجين ٢١٪ • 🟠 غازات أخرى ١٪</p>',o:['٧٨٪','٢١٪','١٪'],a:'٢١٪',w:'نسبة الأكسجين في الغلاف الجوي ٢١٪.'},
+{lv:1,t:'الجزيء',q:'يتكوّن جزيء ثاني أكسيد الكربون من ذرتين من الأكسجين فقط.',o:TF,a:'خطأ',w:'يتكوّن من ذرة كربون وذرتين من الأكسجين.'},
+{lv:1,t:'القشرة الأرضية',type:'order',q:'رتّب من الأكثر وفرة في القشرة الأرضية إلى الأقل:',items:['الأكسجين','السيليكون','الألومنيوم','الحديد'],w:'الترتيب: الأكسجين ٤٧٫٣٪، ثم السيليكون ٢٧٫٧٪، ثم الألومنيوم ٧٫٨٪، ثم الحديد ٤٫٥٪.'},
+{lv:2,t:'الرموز',type:'short',q:'اكتب رمز عنصر الكالسيوم (الحرف الأول كبير والثاني صغير):',acc:['Ca'],w:'رمز الكالسيوم هو Ca.'},
+{lv:2,t:'العنصر والمركّب',q:'الماء مركّب لأن جزيئه يتكوّن من:',o:['ذرتين من الأكسجين','ذرتين من الهيدروجين فقط','ذرتين من الهيدروجين وذرة أكسجين'],a:'ذرتين من الهيدروجين وذرة أكسجين',w:'اتحدت فيه ذرات من عنصرين مختلفين.'},
+{lv:2,t:'العنصر والمركّب',q:'صنّف: السكّر',o:CL,a:'مركّب',w:'تتحد فيه ذرات الكربون والهيدروجين والأكسجين.'},
+{lv:2,t:'الجزيء',q:'ما الفرق بين جزيء الأكسجين وجزيء ثاني أكسيد الكربون من حيث نوع الذرات؟',o:['الأول من نوع واحد من الذرات والثاني من نوعين','الأول من نوعين والثاني من نوع واحد','كلاهما من نوع واحد من الذرات'],a:'الأول من نوع واحد من الذرات والثاني من نوعين',w:'ذرتا الأكسجين من نوع واحد، أما ثاني أكسيد الكربون ففيه كربون وأكسجين.'}];
+let T7;
+function r7(){T7={i:0,sc:0,res:[]};rq()}
+function fin(q,ok){T7.res.push({t:q.t,ok});if(ok){T7.sc++;award('p_t'+T7.i,3)}
+ const f=$('#f7');f.className='fb '+(ok?'ok':'no');f.textContent=H()+(ok?'أحسنت! ':'ليست الإجابة الصحيحة. ')+q.w;
+ $('#n7').appendChild(btn(T7.i+1<TQ.length?'السؤال التالي':'عرض التقرير',()=>{T7.i++;rq()},'gold'))}
+function rq(){const q=TQ[T7.i],box=$('#t7');if(!q)return rep();
+ box.innerHTML=`<p class="hint">المستوى: ${LV[q.lv]} • السؤال ${AR(T7.i+1)} من ${AR(TQ.length)}</p><p><b>${q.q}</b></p>${q.x||''}<div class="col" id="o7"></div><div class="fb" id="f7" aria-live="polite"></div><div id="n7" class="row"></div>`;
+ const o=$('#o7');
+ if(q.type==='match'){const syms=sh(['Fe','Cu','C','Ca']);const sels=q.p.map(p=>{const r=document.createElement('div');r.innerHTML='<b>'+p[0]+'</b> ';const s=document.createElement('select');s.innerHTML='<option value="">اختر الرمز</option>'+syms.map(x=>'<option>'+x+'</option>').join('');r.appendChild(s);o.appendChild(r);return s});
+  const b=btn('تحقّق',()=>{if(sels.some(s=>!s.value)){$('#f7').className='fb no';$('#f7').textContent='اختر رمزًا لكل عنصر.';return}b.disabled=true;sels.forEach(s=>s.disabled=true);fin(q,sels.every((s,i)=>s.value===q.p[i][1]))});o.appendChild(b)}
+ else if(q.type==='short'){const inp=document.createElement('input');inp.dir='ltr';inp.setAttribute('aria-label','الإجابة');inp.style.cssText='font:inherit;padding:8px;border:2px solid #05325b;border-radius:10px;width:140px';o.appendChild(inp);
+  const b=btn('تحقّق',()=>{if(!inp.value.trim())return;b.disabled=true;inp.disabled=true;fin(q,q.acc.includes(inp.value.trim()))});o.appendChild(b)}
+ else if(q.type==='order'){const seq=[];sh(q.items).forEach(it=>{const b=btn(it,()=>{seq.push(it);b.disabled=true;b.classList.add('pk');$('#f7').className='fb';$('#f7').textContent=seq.map((x,i)=>AR(i+1)+'. '+x).join(' • ');
+   if(seq.length===q.items.length){$$('#o7 button').forEach(x=>x.disabled=true);fin(q,seq.every((x,i)=>x===q.items[i]))}});o.appendChild(b)})}
+ else{(q.o===TF||q.o===CL?q.o:sh(q.o)).forEach(t=>{const b=btn(t,()=>{$$('#o7 button').forEach(x=>{x.disabled=true;if(x.textContent===q.a)x.classList.add('ok')});if(t!==q.a)b.classList.add('no');fin(q,t===q.a)});o.appendChild(b)})}}
+function rep(){const N=TQ.length,pct=Math.round(T7.sc/N*100),tp=[...new Set(TQ.map(q=>q.t))],good=tp.filter(t=>T7.res.filter(r=>r.t===t).every(r=>r.ok)),bad=tp.filter(t=>!good.includes(t)),n=award('final',10);
+ $('#t7').innerHTML=`<h3>تقرير تحدّي العالم الصغير</h3><table><tr><td>الأسئلة التي أجبت عنها</td><td>${AR(T7.res.length)}</td></tr><tr><td>الإجابات الصحيحة</td><td>${AR(T7.sc)}</td></tr><tr><td>نسبة الإنجاز</td><td>${AR(pct)}٪</td></tr></table><p><b>موضوعات أتقنتها:</b> ${good.join('، ')||'لا شيء بعد، حاول مرة أخرى'}</p><p><b>موضوعات تحتاج إلى مراجعة:</b> ${bad.join('، ')||'لا يوجد، أحسنت!'}</p>${n?'<p>(+١٠ نقاط لإنهاء التحدي)</p>':''}<div class="row"><button class="btn gold" id="again7">أعد المحاولة</button><button class="btn" id="back7">العودة إلى المختبر</button></div>`;
+ $('#again7').onclick=r7;$('#back7').onclick=()=>show('home')}
+paint();task(0);r3();r4(0);r5();r6();r7();
+</script><script src="assistant.js"></script>
+</body></html>
