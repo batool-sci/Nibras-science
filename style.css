@@ -85,3 +85,6 @@ body{background:linear-gradient(180deg,#ddf1f8 0%,#f5fdff 45%,#c1e1ec 100%);back
 .quiz-box{background:#f5fdff}.mq-opt:hover{border-color:var(--blue)}.cut-msg{color:var(--royal)}
 .lesson-hello{color:var(--blue)}
 footer{background:linear-gradient(180deg,#05325b,#043158);border-top:5px solid var(--gold)}
+
+.lc td,.lc th{border:1px solid #cfdbe8;padding:6px 8px;text-align:center}.lc th{background:#eef6fb}.lc details{margin-top:8px;background:#f3f9fd;border-radius:12px;padding:8px 12px}.lc summary{cursor:pointer;color:var(--royal)}
+.isym{display:inline-flex;flex-direction:column;font-weight:800;line-height:1.1;font-size:.6em;margin-inline-end:3px;vertical-align:middle;text-align:center}.isym i{font-style:normal}

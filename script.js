@@ -28,7 +28,7 @@ const curriculum = {
   }
 };
 // المعروض حاليًا: الفصل الأول، والوحدة الثانية فقط (ترتيبها 1). لإظهار غيرها أضف رقمها هنا.
-const SHOW = {units:[1], hideLessons:[1,2]}; // hideLessons: ترتيب الدروس المخفية (١ = الدرس الثاني، ٢ = الدرس الثالث)
+const SHOW = {units:[1], hideLessons:{6:[1,2],7:[2,3]}}; // hideLessons: ترتيب الدروس المخفية (١ = الدرس الثاني، ٢ = الدرس الثالث)
 function nbName(){try{return localStorage.getItem('nb_name')||''}catch(e){return ''}}
 function nbSave(n){try{localStorage.setItem('nb_name',n)}catch(e){}}
 function nbHi(t){const n=nbName();return n?`${n}، ${t}`:t}
@@ -74,7 +74,8 @@ function renderUnits() {
   unitsGrid.innerHTML = '';
   const units = curriculum[currentGrade][currentTerm].filter((u,i)=>SHOW.units.includes(i));
   units.forEach((unit, i) => {
-    const ls = unit.lessons.filter((l,j)=>!SHOW.hideLessons.includes(j));
+    const hl = Array.isArray(SHOW.hideLessons)?SHOW.hideLessons:(SHOW.hideLessons[currentGrade]||[]);
+    const ls = unit.lessons.filter((l,j)=>!hl.includes(j));
     const card = document.createElement('article'); card.className = 'unit-card';
     const toggle = document.createElement('button'); toggle.className = 'unit-toggle'; toggle.type='button';
     toggle.innerHTML = `<span class="unit-icon">${unit.icon}</span><span><span class="unit-name">${unit.name}</span><span class="unit-meta">${ls.length===1?'درس واحد':ls.length+' دروس'}</span></span><span class="caret">${openedUnit===i?'⌃':'⌄'}</span>`;

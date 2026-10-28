@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مختبر نبراس: جواز سفر العنصر</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--n:#05325b;--g:#ffd43a;--l:#cbeafd;--t:#09a5ae;--ok:#1d7a4d;--no:#a33b2b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#ddf1f8,#f5fdff);color:var(--n);font:18px/1.7 Cairo,Tahoma,sans-serif}
+header{background:linear-gradient(180deg,#05325b,#043158);color:#fff;padding:12px 16px;border-bottom:5px solid var(--g);display:flex;align-items:center;gap:12px}
+header h1{margin:0;font-size:1.4rem}header img{width:56px;height:56px;flex-shrink:0}
+.meta{display:flex;flex-wrap:wrap;gap:2px 16px;font-size:.88rem;color:var(--l)}
+main{max-width:860px;margin:0 auto;padding:14px 16px 40px;display:grid;gap:14px}
+section{background:#fff;border:1px solid #cfdbe8;border-radius:20px;padding:16px;box-shadow:0 6px 18px #1f386410}
+h2{margin:0 0 6px;font-size:1.2rem}.hint{color:#4d6283;font-size:.9rem;margin:4px 0}
+.btn{font:inherit;font-weight:700;border:2px solid var(--n);background:#fff;color:var(--n);border-radius:14px;padding:8px 16px;cursor:pointer}
+.btn.gold{background:var(--g);border-color:var(--g)}.btn.pri{background:var(--n);color:#fff}
+.stage{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.stage{grid-template-columns:1.2fr 1fr}}
+svg{width:100%;max-width:420px;display:block;margin:0 auto;background:var(--l);border-radius:16px}
+.ctl{display:grid;gap:10px}
+.cr{display:flex;align-items:center;gap:10px;border:2px solid #dbe6f1;border-radius:14px;padding:8px 12px}
+.cr b{flex:1}.cr output{min-width:2ch;text-align:center;font-weight:800;font-size:1.3rem}
+.cr button{width:42px;height:42px;border-radius:50%;border:2px solid var(--n);background:#fff;color:var(--n);font:inherit;font-size:1.4rem;font-weight:800;cursor:pointer;line-height:1}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;margin-inline-end:6px;vertical-align:middle}
+.info{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.info div{background:#f3f9fd;border-radius:12px;padding:6px 10px;font-size:.95rem}.info b{display:block;font-size:1.15rem}
+.tasks{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.fb{margin-top:10px;padding:10px 14px;border-radius:12px;font-weight:700;min-height:1px}
+.fb.ok{background:#e4f5ec;color:var(--ok)}.fb.no{background:#fbebe7;color:var(--no)}
+.goal{background:#fffdf3;border:2px dashed var(--g);border-radius:14px;padding:8px 12px;margin:8px 0}
+.pass{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border:4px double var(--n);border-radius:18px;padding:12px 14px;background:#fffdf3}
+.pass .info{margin-top:0}.ps{display:flex;align-items:center;gap:6px;direction:ltr;justify-content:center;min-width:130px}
+.ps b{font:800 3.2rem/1 Cairo}.ab{display:flex;flex-direction:column;gap:6px;font-size:1.25rem;font-weight:800;line-height:1;text-align:center}
+.note{background:#eef6fb;border-radius:12px;padding:8px 12px;margin-top:10px;font-weight:600}
+@media(max-width:560px){.pass{grid-template-columns:1fr}}
+
+</style></head><body>
+<header><img src="logo.png" alt="شعار نبراس العلوم"><div><h1>مختبر نبراس: جواز سفر العنصر</h1>
+<div class="meta"><span id="stName"></span><span>الدرس: هوية العنصر</span><span>الصف: السابع</span><span>المعلمة: بتول عصام</span></div></div></header>
+<main>
+<section>
+<h2>🧪 ابنِ الذرة</h2>
+<p class="hint">غيّر عدد البروتونات والنيوترونات والإلكترونات، وراقب جواز سفر العنصر. الرسم نموذج توضيحي مبسّط.</p>
+<div class="stage">
+<div><svg id="sv" viewBox="0 0 400 400" role="img" aria-label="نموذج الذرة"></svg></div>
+<div class="ctl">
+<div class="cr"><span class="dot" style="background:#d9473b"></span><b>بروتونات (+)</b><button data-k="p" data-d="-1" aria-label="إنقاص البروتونات">−</button><output id="op">0</output><button data-k="p" data-d="1" aria-label="زيادة البروتونات">+</button></div>
+<div class="cr"><span class="dot" style="background:#8a97a6"></span><b>نيوترونات (متعادلة)</b><button data-k="n" data-d="-1" aria-label="إنقاص النيوترونات">−</button><output id="on">0</output><button data-k="n" data-d="1" aria-label="زيادة النيوترونات">+</button></div>
+<div class="cr"><span class="dot" style="background:#1f78d1"></span><b>إلكترونات (−)</b><button data-k="e" data-d="-1" aria-label="إنقاص الإلكترونات">−</button><output id="oe">0</output><button data-k="e" data-d="1" aria-label="زيادة الإلكترونات">+</button></div>
+<button class="btn" id="reset" type="button">إعادة الضبط</button>
+</div></div>
+</section>
+
+<section>
+<h2>🛂 جواز سفر العنصر</h2>
+<div class="pass">
+<div class="ps" aria-label="رمز العنصر"><span class="ab"><i id="pA">0</i><i id="pZ">0</i></span><b id="pX">؟</b></div>
+<div class="info">
+<div>اسم العنصر<b id="iEl">—</b></div>
+<div>العدد الذري Z (= البروتونات)<b id="iZ">0</b></div>
+<div>العدد الكتلي A (= بروتونات + نيوترونات)<b id="iA">0</b></div>
+<div>عدد النيوترونات (A − Z)<b id="iN">0</b></div>
+<div>الشحنة الكلية للذرة<b id="iQ">0</b></div>
+<div>توزيع الإلكترونات<b id="iD">—</b></div>
+</div></div>
+<p class="note" id="nt">هوية العنصر يحدّدها عدد بروتوناته (العدد الذري).</p>
+</section>
+
+<section>
+<h2>🎯 تحدّي الهوية</h2>
+<p class="hint">اختر مهمة، ثم ابنِ الذرة المطلوبة (متعادلة) واضغط «تحقّق».</p>
+<div class="tasks" id="tasks"></div>
+<div class="goal" id="goal">اختر مهمة لتبدأ.</div>
+<button class="btn pri" id="chk" type="button">تحقّق</button>
+<div class="fb" id="fb" aria-live="polite"></div>
+</section>
+<p><button class="btn" type="button" onclick="location.href='index.html'">↩ العودة إلى الموقع</button></p>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const EL=[['',''],['هيدروجين','H'],['هيليوم','He'],['ليثيوم','Li'],['بيريليوم','Be'],['بورون','B'],['كربون','C'],['نيتروجين','N'],['أكسجين','O'],['فلور','F'],['نيون','Ne'],['صوديوم','Na'],['مغنيسيوم','Mg'],['ألمنيوم','Al'],['سيليكون','Si'],['فسفور','P'],['كبريت','S'],['كلور','Cl'],['أرغون','Ar'],['بوتاسيوم','K'],['كالسيوم','Ca']];
+const CAP=[2,8,8,2],MAXP=20,MAXN=25,MAXE=22;
+const S={p:0,n:0,e:0};
+let nm='';try{nm=localStorage.getItem('nb_name')||''}catch(e){}
+const hi=t=>nm?`${nm}، ${t}`:t;
+if(nm)$('#stName').textContent='الطالب: '+nm;
+const ar=n=>n.toLocaleString('ar');
+const sup=s=>String(s).replace(/\d/g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]),sub=s=>String(s).replace(/\d/g,d=>'₀₁₂₃₄₅₆₇₈₉'[d]);
+const idn=(A,Z,X)=>'\u2066'+sup(A)+sub(Z)+X+'\u2069';
+function shells(e){const r=[];let left=e;for(const c of CAP){const k=Math.min(c,left);r.push(k);left-=k}if(left>0)r[3]+=left;return r}
+function draw(){
+  const {p,n,e}=S,sv=$('#sv');let h='';
+  const R=[70,110,150,185];
+  R.forEach(r=>h+=`<circle cx="200" cy="200" r="${r}" fill="none" stroke="#7aa6c6" stroke-width="1.5" stroke-dasharray="4 5"/>`);
+  const nuc=[];for(let i=0;i<p;i++)nuc.push('p');for(let i=0;i<n;i++)nuc.push('n');
+  nuc.sort((a,b)=>((a.charCodeAt(0)*7+nuc.indexOf(a))%5)-2);
+  const pr=Math.min(52,8+Math.sqrt(nuc.length)*7);
+  h+=`<circle cx="200" cy="200" r="${pr+6}" fill="#fff6d6" stroke="#e0b92a"/>`;
+  const gold=Math.PI*(3-Math.sqrt(5));
+  nuc.forEach((t,i)=>{const rr=Math.min(pr,Math.sqrt(i+.5)*(pr/Math.sqrt(nuc.length||1)));const a=i*gold;
+    h+=`<circle cx="${200+rr*Math.cos(a)}" cy="${200+rr*Math.sin(a)}" r="${nuc.length>30?5:6.5}" fill="${t==='p'?'#d9473b':'#8a97a6'}" stroke="#fff" stroke-width="1"/>`});
+  const sh=shells(e);
+  sh.forEach((k,si)=>{for(let j=0;j<k;j++){const a=2*Math.PI*j/k-Math.PI/2+si*0.4;
+    h+=`<circle cx="${200+R[si]*Math.cos(a)}" cy="${200+R[si]*Math.sin(a)}" r="7" fill="#1f78d1" stroke="#fff" stroke-width="1.5"/>`}});
+  sv.innerHTML=h;
+  $('#op').textContent=ar(p);$('#on').textContent=ar(n);$('#oe').textContent=ar(e);
+  const el=p>=1&&p<=MAXP?EL[p]:null;
+  $('#iEl').textContent=p===0?'—':el?el[0]+' '+el[1]:'عنصر آخر';
+  $('#pX').textContent=p===0?'؟':el?el[1]:'؟';
+  $('#pA').textContent=p+n;$('#pZ').textContent=p;
+  $('#iZ').textContent=ar(p);$('#iA').textContent=ar(p+n);$('#iN').textContent=ar(n);
+  const q=p-e;$('#iQ').textContent=q===0?(p?'متعادلة (٠)':'٠'):q>0?`موجبة (+${ar(q)})`:`سالبة (−${ar(-q)})`;
+  $('#iD').textContent=e?sh.filter(x=>x>0).map(ar).join(' ، '):'—';
+}
+let last='';
+document.querySelectorAll('.cr button').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.k,d=+b.dataset.d,mx={p:MAXP,n:MAXN,e:MAXE}[k];
+  S[k]=Math.max(0,Math.min(mx,S[k]+d));draw();
+  $('#nt').textContent=k==='p'?'غيّرتَ عدد البروتونات، فتغيّر العدد الذري وتغيّر العنصر نفسه!':k==='n'?'غيّرتَ عدد النيوترونات، فتغيّر العدد الكتلي فقط ولم يتغيّر العنصر.':'غيّرتَ عدد الإلكترونات، فتغيّرت الشحنة الكلية للذرة ولم يتغيّر العنصر.'});
+$('#reset').onclick=()=>{S.p=S.n=S.e=0;draw();$('#nt').textContent='هوية العنصر يحدّدها عدد بروتوناته (العدد الذري).'};
+const TK=[
+ {name:'ليثيوم Li',p:3,n:4,e:3,sym:'Li',goal:'ابنِ ذرة الليثيوم المتعادلة: ٣ بروتونات و٤ نيوترونات. ثم أجب: ما عدد بروتوناتها؟ لماذا هي متعادلة؟ وما شحنة نواتها؟',ok:'عدد البروتونات ٣، وهي متعادلة لأن عدد إلكتروناتها (٣) يساوي عدد بروتوناتها، وشحنة النواة موجبة (+٣) لأنها تضم البروتونات فقط. هويتها: ',hint:'الليثيوم عدده الذري ٣ وعدده الكتلي ٧.'},
+ {name:'أكسجين O',p:8,n:8,e:8,sym:'O',goal:'ابنِ ذرة الأكسجين المتعادلة: ٨ بروتونات و٨ نيوترونات، ولاحظ توزيع إلكتروناتها.',ok:'توزيع الإلكترونات ٢ ثم ٦. هويتها: ',hint:'الأكسجين عدده الذري ٨.'},
+ {name:'كلور Cl',p:17,n:18,e:17,sym:'Cl',goal:'ذرة الكلور رمزها ³⁵₁₇Cl. ابنِها متعادلة: عدد النيوترونات = العدد الكتلي − العدد الذري.',ok:'النيوترونات = ٣٥ − ١٧ = ١٨. هويتها: ',hint:'العدد الذري ١٧ والعدد الكتلي ٣٥.'},
+ {name:'العنصر M',p:11,n:12,e:11,sym:'M',goal:'نواة العنصر الافتراضي (M) فيها ١١ بروتونًا و١٢ نيوترونًا. ابنِ ذرته المتعادلة واكتب هويته.',ok:'العدد الذري ١١ والعدد الكتلي ٢٣، فهويته ',hint:'العدد الذري = عدد البروتونات، والعدد الكتلي = البروتونات + النيوترونات.',extra:' وتطابق عنصر الصوديوم Na.'}
+];
+let cur=-1;
+const tw=$('#tasks');
+TK.forEach((t,i)=>{const b=document.createElement('button');b.className='btn';b.type='button';b.textContent=t.name;b.onclick=()=>{cur=i;$('#goal').textContent=t.goal;$('#fb').className='fb';$('#fb').textContent='';S.p=S.n=S.e=0;draw();tw.querySelectorAll('.btn').forEach(x=>x.classList.toggle('gold',x===b))};tw.appendChild(b)});
+$('#chk').onclick=()=>{const f=$('#fb');
+  if(cur<0){f.className='fb no';f.textContent=hi('اختر مهمة أولًا.');return}
+  const t=TK[cur];
+  if(S.p===t.p&&S.n===t.n&&S.e===t.e){f.className='fb ok';f.textContent=hi('أحسنت! '+t.ok+idn(t.p+t.n,t.p,t.sym)+(t.extra||''))}
+  else if(S.p!==t.p){f.className='fb no';f.textContent=hi('عدد البروتونات يحدّد هوية العنصر، راجع العدد الذري. '+t.hint)}
+  else if(S.e!==t.p){f.className='fb no';f.textContent=hi('الذرة متعادلة، فيجب أن يتساوى عدد الإلكترونات مع عدد البروتونات.')}
+  else{f.className='fb no';f.textContent=hi('اقتربتَ! راجع عدد النيوترونات (العدد الكتلي − العدد الذري). '+t.hint)}};
+draw();
+</script>
+</body></html>
