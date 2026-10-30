@@ -28,7 +28,7 @@ const curriculum = {
   }
 };
 // المعروض حاليًا: الفصل الأول، والوحدة الثانية فقط (ترتيبها 1). لإظهار غيرها أضف رقمها هنا.
-const SHOW = {units:[1], hideLessons:{6:[1,2],7:[2,3]}}; // hideLessons: ترتيب الدروس المخفية (١ = الدرس الثاني، ٢ = الدرس الثالث)
+const SHOW = {units:[1], hideLessons:{6:[1,2],7:[3]}}; // hideLessons: ترتيب الدروس المخفية (١ = الدرس الثاني، ٢ = الدرس الثالث)
 function nbName(){try{return localStorage.getItem('nb_name')||''}catch(e){return ''}}
 function nbSave(n){try{localStorage.setItem('nb_name',n)}catch(e){}}
 function nbHi(t){const n=nbName();return n?`${n}، ${t}`:t}
